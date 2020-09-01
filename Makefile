@@ -103,7 +103,8 @@ $(BINDIR)/%.$(ROMEXT) $(BINDIR)/%.sym $(BINDIR)/%.map: $(patsubst $(SRCDIR)/%.as
 # (and produce weird errors)
 $(OBJDIR)/%.o $(DEPDIR)/%.mk: $(SRCDIR)/%.asm
 	@$(MKDIR) -p $(dir $(OBJDIR)/$* $(DEPDIR)/$*)
-	$(RGBASM) $(ASFLAGS) -M $(DEPDIR)/$*.mk -MG -MP -MQ $(OBJDIR)/$*.o -MQ $(DEPDIR)/$*.mk -o $(OBJDIR)/$*.o $<
+	$(RGBASM) $(ASFLAGS) -M $(DEPDIR)/$*.mk -MG -MQ $(OBJDIR)/$*.o -MQ $(DEPDIR)/$*.mk -o $(OBJDIR)/$*.o $<
+	#$(RGBASM) $(ASFLAGS) -M $(DEPDIR)/$*.mk -MG -MP -MQ $(OBJDIR)/$*.o -MQ $(DEPDIR)/$*.mk -o $(OBJDIR)/$*.o $<
 
 ifneq ($(MAKECMDGOALS),clean)
 -include $(patsubst $(SRCDIR)/%.asm,$(DEPDIR)/%.mk,$(SRCS))
